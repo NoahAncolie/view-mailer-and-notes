@@ -4,7 +4,9 @@ class EmailsController < ApplicationController
     end
 
     def create
-        @email = Email.new(object: Faker::Superhero.name, body: Faker::Lorem.paragraph(sentence_count: rand(50..200)))
+        @email = Email.new(object: Faker::Superhero.name,
+                            body: Faker::Lorem.paragraph(sentence_count: rand(50..200)),
+                            user_id: current_user.id)
         if @email.save
             respond_to do |format|
                 format.html { redirect_to notes_path }

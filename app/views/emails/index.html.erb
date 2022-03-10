@@ -3,7 +3,7 @@
 <div class="container flex" style="height : 80vh;">
     <div class="email-list" style=" height : 80vh; border : 1px solid grey; padding : 5px; overflow : auto; width : 200px; scrollbar-color: lightgray whitesmoke;">
         <% @emails.each do |email| %>
-            <div style="padding : 10px; <%if email.read%>background-color: rgba(255, 166, 0, 0.178);<%end%>" id="object<%=email.id%>" class="object-div">
+            <div style="padding : 10px; <%if email.read%>background-color: rgba(255, 166, 0, 0.178);<%end%>" id="<%=email.id%>" class="object-div">
                 <%= link_to email.object, email_path(email.id), :method => :get, remote: true %>
             </div>
         <%end%>
@@ -14,11 +14,13 @@
 </div>
 
 <script>
-    const Http = new XMLHttpRequest();
-    for (let index in document.getElementsByClassName("object-div")) {
-        document.getElementsByClassName("object-div")[0].addEventListener("click", function(){
-            console.log("hey")
-            Http.send();
-        })
-    }
+for (let i = 0; i < document.getElementsByClassName("object-div").length; i++) {
+    document.getElementsByClassName("object-div")[i].addEventListener("click", function(){
+        //let Http = new XMLHttpRequest();
+        //let url=`/emails/${document.getElementsByClassName("object-div")[i].id}`;
+        //Http.open("GET", url);
+        //Http.send();
+        document.querySelectorAll(".object-div a")[i].click()
+    })
+}
 </script>

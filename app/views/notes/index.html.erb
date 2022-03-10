@@ -1,0 +1,41 @@
+<div class="container flex">
+    <div class="add-note" id="add-note">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg>
+    </div>
+    <div class="adding-note-form collapse">
+        <%=form_with url: notes_path, method: :post do |form|%>
+            <%= form.label :title, "Title : "%><br>
+            <%= form.text_field :title%><br>
+            <%= form.label :title, "Contenu : "%><br>
+            <%= form.text_area :content%><br>
+            <%= form.submit "Save"%>
+        <%end%>
+    </div>
+</div>
+
+<div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around;" id="notes">
+    <%@notes.each do |note|%>
+        <div class="card" dataId="<%= note.id%>" style="width: 18rem; margin-top : 10px;">
+            <div class="card-body">
+                <h5 class="card-title"><%=note.title%></h5>
+                <p class="card-text"><%=note.content%></p>
+                <%= link_to "Destroy", note_path(note.id), data: { method: :delete }, remote: true, class: "btn btn-sm btn-danger"%>
+                <%= check_box_tag "checkbox#{note.id}", 1, !note.completed, data: { remote: true, url: note_path(note.id), params: { id: note.id, is_completed: !note.completed }.to_param, method: "put" }%>
+            </div>
+        </div>
+    <%end%>
+</div>
+
+<script>
+    document.getElementById("add-note").addEventListener("click", function(){
+        document.getElementsByClassName("adding-note-form")[0].classList.toggle("collapse")
+        document.getElementsByClassName("adding-note-form")[0].classList.toggle("form-open")
+    })
+window.addEventListener("click", function(){
+    for (let index in document.querySelectorAll(".card input")) {
+        if (document.querySelectorAll(".card input")[index].checked) {
+            document.getElementsByClassName("card-text")[index].classList.toggle("cross-text")
+        }
+    }
+})
+</script>

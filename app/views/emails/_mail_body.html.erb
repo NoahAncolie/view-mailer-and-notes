@@ -1,0 +1,12 @@
+<div id="email-body">
+    <div class="email-body-object"><h5><strong><%=email.object%></strong></h5></div>
+    <div class="email-body"><p><%=email.body%></p></div>
+    <div class="flex" style="width : 300px; justify-content : space-between;">
+        <%= link_to 'Delete', email_path(email.id), :method => :delete, class: "btn btn-danger", remote: true %>
+        <% if !email.read %>
+            <%= link_to 'Marquer comme Lu', email_path(email.id), :method => :patch, class: "btn btn-info", remote: true %>
+        <% else %>
+            <%= link_to 'Marquer comme non lu', email_path(email.id), :method => :patch, class: "btn btn-info", remote: true %>
+        <%end%>
+    </div>
+</div>

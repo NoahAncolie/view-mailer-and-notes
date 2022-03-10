@@ -1,0 +1,7 @@
+<% if @email.read %>
+    document.getElementById(`object${<%=@email.id%>}`).style.backgroundColor = "rgba(255, 166, 0, 0.178)"
+    document.querySelectorAll("#email-body a")[1].innerHTML = "Marquer comme non lu"
+<% else %>
+    document.getElementById(`object${<%=@email.id%>}`).style.backgroundColor = ""
+    document.querySelectorAll("#email-body a")[1].innerHTML = "Marquer comme lu"
+<% end %>

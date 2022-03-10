@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+    background-color : whitesmoke;
+}
+
+.destroy-card {
+    animation : 1s ease-in-out;
+    transform: scale(1.1);
+    box-shadow : 0 0 10px lightgray;
+}
+
+.add-note {
+    border-radius : 4px;
+    background-color : lightgray;
+    width : 50px;
+    height : 50px;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+}
+
+.add-note:hover {
+    background-color: lightslategray;
+}
+
+.add-note svg {
+    fill: whitesmoke;
+    width : 30px;
+    height : 30px;
+}
+
+.flex {
+    margin-top : 10px;
+    display : flex;
+    flex-wrap: wrap;
+}
+
+.adding-note-form {
+    margin-left : 10px;
+    background-color : rgba(245, 245, 245, 0.24);
+    border : 1px solid lightgray;
+    border-radius : 4px;
+    padding : 8px;
+}
+
+.form-open {
+    animation : 0.8s open ease-in-out;
+}
+
+@keyframes open {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cross-text {
+    animation: 0.7s ease-in-out;
+    text-decoration: line-through;
+}
+
+.change-color {
+    background-color : rgba(255, 166, 0, 0.178);
+}

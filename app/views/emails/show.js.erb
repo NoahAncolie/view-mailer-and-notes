@@ -1,0 +1,7 @@
+if (document.getElementsByClassName("selected-email")[0].childElementCount < 1) {
+    document.getElementsByClassName("selected-email")[0].insertAdjacentHTML("beforeend", "<%= j render 'mail_body', email: @email%>")
+} else {
+        document.getElementsByClassName("selected-email")[0].removeChild(document.getElementById("email-body"))
+        document.getElementsByClassName("selected-email")[0].insertAdjacentHTML("beforeend", "<%= j render 'mail_body', email: @email%>")
+}
+document.getElementById(`object${<%=@email.id%>}`).style.backgroundColor = "rgba(255, 166, 0, 0.178)"

@@ -1,0 +1,24 @@
+<%= link_to "Actualiser", emails_path, :method => :post, remote: true , style: "margin : 30px;"%>
+
+<div class="container flex" style="height : 80vh;">
+    <div class="email-list" style=" height : 80vh; border : 1px solid grey; padding : 5px; overflow : auto; width : 200px; scrollbar-color: lightgray whitesmoke;">
+        <% @emails.each do |email| %>
+            <div style="padding : 10px; <%if email.read%>background-color: rgba(255, 166, 0, 0.178);<%end%>" id="object<%=email.id%>" class="object-div">
+                <%= link_to email.object, email_path(email.id), :method => :get, remote: true %>
+            </div>
+        <%end%>
+    </div>
+    <div class="selected-email" style="height : 80vh; width : 80%; padding : 10px; overflow-y : auto; scrollbar-color: lightgray whitesmoke;">
+
+    </div>
+</div>
+
+<script>
+    const Http = new XMLHttpRequest();
+    for (let index in document.getElementsByClassName("object-div")) {
+        document.getElementsByClassName("object-div")[0].addEventListener("click", function(){
+            console.log("hey")
+            Http.send();
+        })
+    }
+</script>

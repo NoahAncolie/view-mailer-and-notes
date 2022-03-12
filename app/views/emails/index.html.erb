@@ -2,7 +2,7 @@
 <%= link_to "Actualiser", emails_path, :method => :post, remote: true , style: "margin : 30px;"%>
 
 <div class="container flex" style="height : 80vh;">
-    <div class="email-list" style=" height : 80vh; border : 1px solid grey; padding : 5px; overflow : auto; width : 200px; scrollbar-color: lightgray whitesmoke;">
+    <div class="email-list" style=" height : 80vh; border : 1px solid grey; padding : 5px; overflow-y :scroll; width : 200px; scrollbar-color: lightgray whitesmoke;">
         <% @emails.each do |email| %>
             <% if email.user_id == current_user.id%>
                 <div style="padding : 10px; <%if email.read%>background-color: rgba(255, 166, 0, 0.178);<%end%>" id="<%=email.id%>" class="object-div">

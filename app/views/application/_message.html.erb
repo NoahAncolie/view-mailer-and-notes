@@ -1,14 +1,12 @@
-<% user = User.find(2) %>
-<% @messages = Message.all %>
 <div class="message-div" style="padding : 10px; width : 250px; height : 450px; border-radius : 10px; border : 1px solid grey; position : fixed; top : 20px; right : 20px; background-color : whitesmoke; z-index : 6;">
-    <p><strong><%=user.login%></strong></p>    
+    <p><strong><%=friend.login%></strong></p>    
     <div class="conversation" style="height : 300px;overflow-y : auto; scrollbar-color : lightgray whitesmoke">
-        <%@messages.each do |message|%>
-            <% if (message.recipient_id == user.id && message.sender_id == current_user.id)%>
+        <%messages.each do |message|%>
+            <% if (message.sender_id == friend.id && message.recipient_id == current_user.id)%>
                 <div class="sender" style="text-align : left;">
                     <p style="background-color : lightblue;"><%=message.content%></p>
                 </div>
-            <% else (message.recipient_id == current_user.id && message.sender_id == user.id)%>
+            <% else (message.recipient_id == friend.id && message.sender_id == current_user.id)%>
                 <div class="recipient" style="text-align : right;">
                     <p><%=message.content%></p>
                 </div>
@@ -18,7 +16,7 @@
     <div class="msg-form flex">
         <%= form_with url: messages_path, method: :post do |form| %>
             <%= form.text_area :content, size: "10x2" %>
-            <%= form.hidden_field :recipient_id, value: user.id %>
+            <%= form.hidden_field :recipient_id, value: friend.id %>
             <%= form.submit "Send"%>
         <%end%>
     </div>

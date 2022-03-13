@@ -1,4 +1,17 @@
 class MessagesController < ApplicationController
+  def index
+    @users = User.all
+  end
+
+  def show
+    @messages = Message.all
+    @friend = User.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to message_path(@recipient.id) }
+      format.js { }
+    end
+  end
+
   def create
     @message = Message.new(permit_params)
     if @message.save
@@ -15,7 +28,7 @@ class MessagesController < ApplicationController
   private
 
   def permit_params
-    params[:sender] = current_user
-    params.permit(:sender, :recipient, :content)
+    params[:sender_id] = current_user.id
+    params.permit(:sender_id, :recipient_id, :content)
   end
 end

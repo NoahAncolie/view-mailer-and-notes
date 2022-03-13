@@ -13,6 +13,9 @@
         <a class="nav-link" href="<%=emails_path%>">Emails</a>
       </li>
         <% if user_signed_in? %>
+        <li class="nav-item active">
+          <a class="nav-link" href="<%=messages_path%>">Messages</a>
+        </li>
     <li class="nav-item">
       <%= link_to "Sign out", destroy_user_session_path, class: "nav-link", method: :delete %>
     </li>

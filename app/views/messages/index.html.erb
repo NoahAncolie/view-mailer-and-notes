@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+    <% if user.id != current_user.id %>
+        <%= link_to "#{user.id} #{user.login}", message_path(user.id), :method => :get, remote: true %>
+    <% end %>
+<%end%>
